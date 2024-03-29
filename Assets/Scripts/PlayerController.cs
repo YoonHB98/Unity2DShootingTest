@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     public Transform _myTF;
     public int _playerLevel = 0;
     public float _fireRate = 0.0f;
+    private float _onfireRate = 0.0f;
     public int _playerHp = 0;
 
     private void Awake()
     {
+        _onfireRate = _fireRate;
         _anim = GetComponent<Animator>();
     }
 
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if (_fireRate <= 0)
         {
             Vector3 bPosition = _myTF.position;
-            _fireRate += 0.2f;
+            _fireRate = _fireRate + _onfireRate;
             switch (_playerLevel)
             {
                 case 1:
