@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform _myTF;
     public int _playerLevel = 0;
     public float _fireRate = 0.0f;
+    public int _playerHp = 0;
 
     private void Awake()
     {
@@ -39,8 +40,17 @@ public class PlayerController : MonoBehaviour
         {
             Fire2();
         }
+        else
+        {
+            _fireRate = _fireRate - Time.deltaTime;
+            if (_fireRate <= 0)
+            {
+                _fireRate = 0;
+            }
+        }
+
     }
-    
+
     private void Fire(int level)
     {
         _fireRate -= Time.deltaTime;
@@ -88,6 +98,28 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+            _playerHp = _playerHp - enemy._dmg;
+            if(_playerHp <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+
+        } else if (collision.CompareTag("EnemyBullet"))
+        {
+            Bullet bullet = collision.GetComponent<Bullet>();
+            _playerHp = _playerHp - bullet._Damage;
+            if (_playerHp <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
 }

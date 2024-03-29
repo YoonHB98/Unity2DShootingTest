@@ -151,5 +151,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   _hp: 2
+  _dmg: 1
   _rb: {fileID: 0}
   _myTF: {fileID: 0}
+  _images:
+  - {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  - {fileID: -7844560889915226194, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  _spriteRenderer: {fileID: 7809944315293937203}
+  _bullet:
+  - {fileID: 8586320547862463978, guid: f2a4fe899f40a9744a0edc840c6b4e3a, type: 3}
+  - {fileID: 7155205172333810965, guid: b3360048096c16d47a476867b8aee7f0, type: 3}
+  _fireRate: 0.2
+  _enemyType: 0

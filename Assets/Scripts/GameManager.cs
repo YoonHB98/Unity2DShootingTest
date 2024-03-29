@@ -5,12 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    //일정시간마다 적 생성
 
     public float _spawnTimeMin = 0.0f;
     public float _spawnTimeMax = 0.0f;
     public float _spawnTime = 0.0f;
     public float _randomX = 0.0f;
+    public Transform _player;
     public GameObject[] _enemyPrefab;
     public Transform[] _spawnPoint;
 
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _player = FindObjectOfType<PlayerController>().transform;
     }
 
 

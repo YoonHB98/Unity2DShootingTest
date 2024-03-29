@@ -9,9 +9,8 @@ public class Wall : MonoBehaviour
         switch (collision.tag)
         {
             case "Bullet":
-                Destroy(collision.gameObject);
-                break;
             case "Enemy":
+            case "EnemyBullet":
                 Destroy(collision.gameObject);
                 break;
         }
