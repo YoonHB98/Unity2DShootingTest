@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
             Bullet bullet = collision.GetComponent<Bullet>();
             OnHit(bullet._Damage);
             Destroy(collision.gameObject);
+            GameManager.instance.AddScore(10);
         }
     }
 

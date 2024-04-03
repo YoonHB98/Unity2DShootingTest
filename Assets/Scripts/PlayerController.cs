@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             EnemyController enemy = collision.GetComponent<EnemyController>();
             _playerHp = _playerHp - enemy._dmg;
+            Destroy(collision.gameObject);
             if(_playerHp <= 0)
             {
                 gameObject.SetActive(false);
@@ -117,11 +118,13 @@ public class PlayerController : MonoBehaviour
         {
             Bullet bullet = collision.GetComponent<Bullet>();
             _playerHp = _playerHp - bullet._Damage;
+            Destroy(collision.gameObject);
             if (_playerHp <= 0)
             {
                 gameObject.SetActive(false);
             }
         }
     }
+
 
 }
