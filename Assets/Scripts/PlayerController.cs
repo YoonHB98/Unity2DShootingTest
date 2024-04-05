@@ -123,6 +123,22 @@ public class PlayerController : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+        }else if (collision.CompareTag("Item"))
+        {
+            ItemController item = collision.GetComponent<ItemController>();
+            switch (item._itemType)
+            {
+                case ItemType.Power:
+                    if (_playerLevel < 3)
+                    {
+                        _playerLevel++;
+                    }
+                    break;
+                case ItemType.Coin:
+                    GameManager.instance.AddScore(100);
+                    break;
+            }
+            Destroy(collision.gameObject);
         }
     }
 
