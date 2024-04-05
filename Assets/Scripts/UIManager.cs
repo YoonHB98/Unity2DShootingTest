@@ -16,20 +16,12 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
         _player = FindObjectOfType<PlayerController>();
     }
 
     private void OnEnable()
     {
+        Debug.Log("OnEnable");
         GameManager.instance.onScoreChange += OnScoreChange;
         GameManager.instance.onLifeChange += OnLifeChange;
     }
@@ -66,6 +58,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager.instance.onScoreChange += OnScoreChange;
+
     }
 }

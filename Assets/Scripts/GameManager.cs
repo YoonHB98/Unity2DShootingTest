@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -27,14 +28,8 @@ public class GameManager : MonoBehaviour
     {
         _life = 3;
         _score = 0;
-        if (instance == null)
-        {
-            instance = this;
-        }else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
+        _menuGameOver.SetActive(false);
+        instance = this;
         player = FindObjectOfType<PlayerController>();
         _player = player.transform;
     }
@@ -67,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        onScoreChange?.Invoke(_score);
     }
 
     // Update is called once per frame
@@ -96,6 +92,7 @@ public class GameManager : MonoBehaviour
             RespawnFlag = false;
         }
 
+        RespawnPlayer();
         yield return new WaitForSeconds(3.0f);
         player.gameObject.SetActive(true);
         player._playerHp = 1;
@@ -123,7 +120,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         _score += score;
-        onScoreChange(_score);
+        if(onScoreChange != null)
+        {
+            onScoreChange.Invoke(_score);
+        }
     }
 
     public void RespawnPlayer()
@@ -135,9 +135,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            onLifeChange(_life);
+            onLifeChange?.Invoke(_life);
             player.gameObject.SetActive(false);
-            _menuGameOver.SetActive(true);
         }
+    }
+
+    public void ButtonAct_Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
         _rb.AddForce(_myTF.up * _speed, ForceMode2D.Impulse);
     }
 
+
     // Update is called once per frame
     void Update()
     {

@@ -51,6 +51,7 @@ public class EnemyController : MonoBehaviour
         if (_hp <= 0)
         {
             Destroy(gameObject);
+            GameManager.instance.AddScore(10);
         }
         _spriteRenderer.sprite = _images[1];
         Invoke("ReturnSpriteImage", 0.1f);
