@@ -104,43 +104,53 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        switch(collision.tag)
         {
-            EnemyController enemy = collision.GetComponent<EnemyController>();
-            _playerHp = _playerHp - enemy._dmg;
-            Destroy(collision.gameObject);
-            if(_playerHp <= 0)
-            {
-                gameObject.SetActive(false);
-            }
-
-        } else if (collision.CompareTag("EnemyBullet"))
-        {
-            Bullet bullet = collision.GetComponent<Bullet>();
-            _playerHp = _playerHp - bullet._Damage;
-            Destroy(collision.gameObject);
-            if (_playerHp <= 0)
-            {
-                gameObject.SetActive(false);
-            }
-        }else if (collision.CompareTag("Item"))
-        {
-            ItemController item = collision.GetComponent<ItemController>();
-            switch (item._itemType)
-            {
-                case ItemType.Power:
-                    if (_playerLevel < 3)
+            case "Enemy":
+                EnemyController enemy = collision.GetComponent<EnemyController>();
+                _playerHp = _playerHp - enemy._dmg;
+                Destroy(collision.gameObject);
+                if (_playerHp <= 0)
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "EnemyBullet":
+                Bullet bullet = collision.GetComponent<Bullet>();
+                _playerHp = _playerHp - bullet._Damage;
+                Destroy(collision.gameObject);
+                if (_playerHp <= 0)
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "Item":
+                ItemController item = collision.GetComponent<ItemController>();
+                if (item != null)
+                {
+                    switch (item._itemType)
                     {
-                        _playerLevel++;
-                    }
-                    break;
-                case ItemType.Coin:
-                    GameManager.instance.AddScore(100);
-                    break;
-            }
-            Destroy(collision.gameObject);
-        }
-    }
+                        case ItemType.Power:
+                            if (_playerLevel < 3)
+                            {
+                                _playerLevel++;
+                            }
+                            Destroy(collision.gameObject);
+                            break;
+                        case ItemType.Coin:
+                            GameManager.instance.AddScore(100);
+                            Destroy(collision.gameObject);
+                            break;
+                        case ItemType.Bomb:
+                            GameManager.instance.ShowBoomEffect();
+                            Destroy(collision.gameObject);
+                            break;
 
+                    }
+                }
+            break;
+        }
+
+    }
 
 }

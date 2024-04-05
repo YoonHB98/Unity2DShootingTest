@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static PlayerController player;
     public GameObject _menuGameOver;
+    public GameObject _oBoomEffect;
 
 
     public float _spawnTimeMin = 0.0f;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         onScoreChange?.Invoke(_score);
+        HideBoomEffect();
     }
 
     // Update is called once per frame
@@ -143,5 +145,16 @@ public class GameManager : MonoBehaviour
     public void ButtonAct_Restart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ShowBoomEffect()
+    {
+        _oBoomEffect.SetActive(true);
+        Invoke("HideBoomEffect", 1.0f);
+    }
+
+    private void HideBoomEffect()
+    {
+        _oBoomEffect.SetActive(false);
     }
 }
