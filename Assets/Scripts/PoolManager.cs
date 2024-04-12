@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolManager
 {
     static GameObject _folder;
-    static List<GameObject> _list = new List<GameObject>();
+    static Dictionary<int, List<GameObject>> _dic = new Dictionary<int, List<GameObject>>();
 
     public static GameObject Spawn(GameObject prefab, Vector3 pos, Quaternion rot)
     {
@@ -13,22 +13,39 @@ public class PoolManager
         {
             _folder = new GameObject("Pool");
         }
-        for(int i = 0; i < _list.Count; i++)
+        if(_dic.ContainsKey(prefab.GetInstanceID()))
         {
-            if (_list[i].activeSelf == false)
+            List<GameObject> _list = _dic[prefab.GetInstanceID()];
+            for (int i = 0; i < _list.Count; i++)
             {
-                GameObject clone = _list[i];
-                clone.transform.position = pos;
-                clone.transform.rotation = rot;
-                clone.SetActive(true);
-                return _list[i];
+                if (_list[i].activeSelf == false)
+                {
+                    GameObject clone = _list[i];
+                    clone.transform.position = pos;
+                    clone.transform.rotation = rot;
+                    clone.SetActive(true);
+                    return clone;
+                }
             }
+            GameObject newClone = GameObject.Instantiate(prefab, pos, rot);
+            _list.Add(newClone);
+            _dic[prefab.GetInstanceID()] = _list;
+            newClone.transform.parent = _folder.transform;
+            return newClone;
         }
-        GameObject newClone = GameObject.Instantiate(prefab, pos, rot);
-        _list.Add(newClone);
-        newClone.transform.SetParent(_folder.transform);
-        return newClone;
+        else
+        {
+            List<GameObject> _list = new List<GameObject>();
+            GameObject newClone = GameObject.Instantiate(prefab, pos, rot);
+            _list.Add(newClone);
+            _dic.Add(prefab.GetInstanceID(), _list);
+            newClone.transform.parent = _folder.transform;
+            return newClone;
+        }
     }
+      
+
+
 
     public static void Despawn(GameObject obj)
     {

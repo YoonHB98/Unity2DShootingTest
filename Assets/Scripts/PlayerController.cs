@@ -93,13 +93,13 @@ public class PlayerController : MonoBehaviour
                     PoolManager.Spawn(_bullet[0].gameObject, bPosition, Quaternion.identity);
                     break;
                 case 2:
-                    Instantiate(_bullet[0], bPosition + new Vector3(-0.12f, 0, 0), Quaternion.identity);
-                    Instantiate(_bullet[0], bPosition + new Vector3(0.12f, 0, 0), Quaternion.identity);
+                    PoolManager.Spawn(_bullet[0].gameObject, bPosition + new Vector3(-0.12f, 0, 0), Quaternion.identity);
+                    PoolManager.Spawn(_bullet[0].gameObject, bPosition + new Vector3(0.12f, 0, 0), Quaternion.identity);
                     break;
                 case 3:
-                    Instantiate(_bullet[1], bPosition, Quaternion.identity);
-                    Instantiate(_bullet[0], bPosition +new Vector3(0.25f,0,0), Quaternion.identity);
-                    Instantiate(_bullet[0], bPosition +new Vector3(-0.25f, 0, 0), Quaternion.identity);
+                    PoolManager.Spawn(_bullet[1].gameObject, bPosition, Quaternion.identity);
+                    PoolManager.Spawn(_bullet[0].gameObject, bPosition +new Vector3(0.25f,0,0), Quaternion.identity);
+                    PoolManager.Spawn(_bullet[0].gameObject, bPosition +new Vector3(-0.25f, 0, 0), Quaternion.identity);
                     break;
             }
             
