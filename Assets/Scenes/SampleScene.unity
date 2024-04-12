@@ -1321,7 +1321,7 @@ MonoBehaviour:
   - {fileID: 7896524371161009888, guid: 4460a2e941cd8784fbf3fb6b62a082b0, type: 3}
   _bullets: []
   _myTF: {fileID: 1070838503}
-  _playerLevel: 1
+  _playerLevel: 3
   _fireRate: 0.1
   _playerHp: 1
 --- !u!95 &1070838505

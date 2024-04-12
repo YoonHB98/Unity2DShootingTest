@@ -13,7 +13,7 @@ public class PoolManager
         {
             _folder = new GameObject("Pool");
         }
-        if(_dic.ContainsKey(prefab.GetInstanceID()))
+        if (_dic.ContainsKey(prefab.GetInstanceID()))
         {
             List<GameObject> _list = _dic[prefab.GetInstanceID()];
             for (int i = 0; i < _list.Count; i++)
@@ -27,25 +27,26 @@ public class PoolManager
                     return clone;
                 }
             }
-            GameObject newClone = GameObject.Instantiate(prefab, pos, rot);
-            _list.Add(newClone);
-            _dic[prefab.GetInstanceID()] = _list;
-            newClone.transform.parent = _folder.transform;
-            return newClone;
+        }
+        return Create(prefab, pos, rot);
+    }
+      
+
+    static GameObject Create(GameObject prefab, Vector3 Pos, Quaternion rot)
+    {
+        GameObject newClone = GameObject.Instantiate(prefab, Pos, rot);
+        if(_dic.ContainsKey(prefab.GetInstanceID()))
+        {
+            _dic[prefab.GetInstanceID()].Add(newClone);
         }
         else
         {
             List<GameObject> _list = new List<GameObject>();
-            GameObject newClone = GameObject.Instantiate(prefab, pos, rot);
             _list.Add(newClone);
             _dic.Add(prefab.GetInstanceID(), _list);
-            newClone.transform.parent = _folder.transform;
-            return newClone;
         }
+        return newClone;
     }
-      
-
-
 
     public static void Despawn(GameObject obj)
     {
