@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
     public void ShowBoomEffect()
     {
         _oBoomEffect.SetActive(true);
+        EnemyClearAll();
         Invoke("HideBoomEffect", 1.0f);
     }
 
@@ -157,4 +158,21 @@ public class GameManager : MonoBehaviour
     {
         _oBoomEffect.SetActive(false);
     }
+
+    private void EnemyClearAll()
+    {
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+
+        for (int i = 0; i < enemys.Length; i++)
+        {
+            enemys[i].GetComponent<EnemyController>().OnHit(100);
+        }
+        for (int i = 0; i < enemyBullets.Length; i++)
+        {
+            Destroy(enemyBullets[i]);
+        }
+    }
 }
+
+

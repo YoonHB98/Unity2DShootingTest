@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        Vector3 nextPos = transform.position + new Vector3(h, v, 0) * _speed * Time.deltaTime;
+        Vector3 nextPos = _myTF.position + new Vector3(h, v, 0) * _speed * Time.deltaTime;
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
         {
             _anim.SetInteger("Input", (int)h);
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         nextPos.x = Mathf.Clamp(nextPos.x, _minBoundary.x, _maxBoundary.x);
         nextPos.y = Mathf.Clamp(nextPos.y, _minBoundary.y, _maxBoundary.y);
 
-        transform.position = nextPos;
+        _myTF.position = nextPos;
 
         if (Input.GetButton("Fire1"))
         {

@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void OnHit(int dmg)
+    public void OnHit(int dmg)
     {
         _hp = _hp - dmg;
         if (_hp <= 0)
