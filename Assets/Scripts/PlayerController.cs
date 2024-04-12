@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 _maxBoundary = Vector2.zero;
     public Animator _anim;
     public Transform[] _bullet;
+    public Transform[] _bullets;
     public Transform _myTF;
     public int _playerLevel = 0;
     public float _fireRate = 0.0f;
@@ -20,6 +21,11 @@ public class PlayerController : MonoBehaviour
     {
         _onfireRate = _fireRate;
         _anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+
     }
 
     // Update is called once per frame
@@ -84,7 +90,7 @@ public class PlayerController : MonoBehaviour
             switch (_playerLevel)
             {
                 case 1:
-                    Instantiate(_bullet[0], bPosition, Quaternion.identity);
+                    PoolManager.Spawn(_bullet[0].gameObject, bPosition, Quaternion.identity);
                     break;
                 case 2:
                     Instantiate(_bullet[0], bPosition + new Vector3(-0.12f, 0, 0), Quaternion.identity);

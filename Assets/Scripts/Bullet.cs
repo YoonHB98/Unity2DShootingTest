@@ -11,6 +11,12 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //_rb.AddForce(_myTF.up * _speed, ForceMode2D.Impulse);
+    }
+
+    private void OnEnable()
+    {
+        _rb.velocity = Vector2.zero;
         _rb.AddForce(_myTF.up * _speed, ForceMode2D.Impulse);
     }
 
@@ -30,7 +36,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

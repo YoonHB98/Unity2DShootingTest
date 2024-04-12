@@ -9,6 +9,8 @@ public class Wall : MonoBehaviour
         switch (collision.tag)
         {
             case "Bullet":
+                PoolManager.Despawn(collision.gameObject);
+                break;
             case "Enemy":
             case "EnemyBullet":
                 Destroy(collision.gameObject);

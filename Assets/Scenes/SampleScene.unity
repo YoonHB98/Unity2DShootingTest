@@ -333,6 +333,7 @@ MonoBehaviour:
   _speed: 0
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &221572701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1183,7 @@ MonoBehaviour:
   _speed: 3
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &776831888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,8 +1319,9 @@ MonoBehaviour:
   _bullet:
   - {fileID: 185590490493972779, guid: 4f0b677742c112949848e2b159aa6e39, type: 3}
   - {fileID: 7896524371161009888, guid: 4460a2e941cd8784fbf3fb6b62a082b0, type: 3}
+  _bullets: []
   _myTF: {fileID: 1070838503}
-  _playerLevel: 2
+  _playerLevel: 1
   _fireRate: 0.1
   _playerHp: 1
 --- !u!95 &1070838505
@@ -1610,6 +1613,7 @@ MonoBehaviour:
   _speed: 2
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &1183811403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1745,7 @@ MonoBehaviour:
   _speed: 1
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &1263709880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,6 +2269,7 @@ MonoBehaviour:
   _speed: 3
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &1504727975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,6 +2657,7 @@ MonoBehaviour:
   _speed: 2
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
 --- !u!1 &1644961137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,3 +2980,4 @@ MonoBehaviour:
   _speed: 1
   _endY: 0
   _startY: 0
+  _myTF: {fileID: 0}
