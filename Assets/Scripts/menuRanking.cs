@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIRank : MonoBehaviour
+public class menuRanking : MonoBehaviour
 {
     public TMP_Text _tRank;
     public TMP_Text _tID;
@@ -12,8 +12,14 @@ public class UIRank : MonoBehaviour
     RankData _rank;
     public void init(RankData rank)
     {
+        gameObject.SetActive(true);
         _rank = rank;
         UpdateUI();
+    }
+
+    public void HideUI()
+    {
+        gameObject.SetActive(false);
     }
 
     void UpdateUI()

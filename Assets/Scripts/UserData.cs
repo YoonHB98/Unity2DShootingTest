@@ -7,4 +7,9 @@ using System;
 public class UserData
 {
     public List<RankData> _list;
+
+    public UserData()
+    {
+        _list = new List<RankData>();
+    }
 }

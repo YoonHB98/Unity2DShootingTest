@@ -23,9 +23,9 @@ public class SaveData : MonoBehaviour
         }
     }
 
-    public T Deserialize<T>(string data)
+    public static T Deserialize<T>(string data)
     {
-        if (string.IsNullOrEmpty(data))
+        if (string.IsNullOrEmpty(data) == false)
         {
             byte[] b = Convert.FromBase64String(data);
             using (var stream = new MemoryStream(b))

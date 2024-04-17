@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public int _score;
     public event Action<int> onLifeChange;
     public int _life;
+    public UserData _userData;
+    public float _currenttime;
 
     void Awake()
     {
@@ -63,8 +65,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _currenttime = Time.time + UnityEngine.Random.Range(2.0f, 4.0f);
         onScoreChange?.Invoke(_score);
         HideBoomEffect();
+
+        string data = PlayerPrefs.GetString("UserData");
+        if (string.IsNullOrEmpty(data) == false)
+        {
+            _userData = SaveData.Deserialize<UserData>(data);
+        }
+        else
+        {
+            _userData = new UserData();
+        }
     }
 
     // Update is called once per frame
