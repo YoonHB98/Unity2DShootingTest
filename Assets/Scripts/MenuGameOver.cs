@@ -12,7 +12,6 @@ public class MenuGameOver : MonoBehaviour
     public void ButtonAct_Save()
     {
         UserData ud = GameManager.instance._userData;
-        GameManager.instance._userData._list.Add(new RankData(1, _editText.text, GameManager.instance._score));
 
         bool isLike = false;
         for(int i = 0; i < ud._list.Count; i++)
@@ -26,10 +25,10 @@ public class MenuGameOver : MonoBehaviour
                 isLike = true;
                 break;
             }
-            if(isLike == false)
-            {
-                GameManager.instance._userData._list.Add(new RankData(1, _editText.text, GameManager.instance._score));
-            }
+        }
+        if (isLike == false)
+        {
+            GameManager.instance._userData._list.Add(new RankData(1, _editText.text, GameManager.instance._score));
         }
 
 
