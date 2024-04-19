@@ -13,6 +13,7 @@ public class ValueRanking : MonoBehaviour
         if (string.IsNullOrEmpty(data) == false)
         {
             playerData = SaveData.Deserialize<UserData>(data);
+            playerData.SortList();
             UpdateUI();
         }
     }
@@ -21,8 +22,11 @@ public class ValueRanking : MonoBehaviour
     {
         for(int i = 0; i < _rankDataList.Length; i++)
         {
-            if(playerData._list.Count > i)
+            if (playerData._list.Count > i)
             {
+                RankData data = playerData._list[i];
+                data._rank = i + 1;
+                playerData._list[i] = data;
                 _rankDataList[i].init(playerData._list[i]);
             }
             else
